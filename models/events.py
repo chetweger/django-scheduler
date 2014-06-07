@@ -43,6 +43,11 @@ class Event(models.Model):
     calendar = models.ForeignKey(Calendar, null=True, blank=True, verbose_name=_("calendar"))
     objects = EventManager()
 
+    day_week = models.IntegerField() # an integer representing the day of the week
+                                     # from 0 (Monday) to 6 (Sunday)
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+
     class Meta:
         verbose_name = _('event')
         verbose_name_plural = _('events')

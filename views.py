@@ -261,6 +261,9 @@ def create_or_edit_event(request, calendar_slug, event_id=None, next=None, templ
         if instance is None:
             event.creator = request.user
             event.calendar = calendar
+            event.day_week = event.start.weekday()
+            event.start_time = event.start.time()
+            event.end_time = event.end.time()
         event.save()
         next = next or reverse('event', args=[event.id])
         next = get_next_url(request, next)
